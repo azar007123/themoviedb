@@ -56,7 +56,16 @@ var filmSchema = new Schema({
         required: true
     }
 
-});
+}, { toJSON: { virtuals: true } });
+
+filmSchema.virtual('genre', {
+    ref: 'genre', // The model to use
+    localField: 'genre_ids', // Find people where `localField`
+    foreignField: 'id', // is equal to `foreignField`
+    // If `justOne` is true, 'members' will be a single doc as opposed to
+    // an array. `justOne` is false by default.
+    justOne: false
+  });
 
 var Film = mongoose.model('Film',filmSchema);
 

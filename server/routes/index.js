@@ -1,10 +1,8 @@
 module.exports = function (app, express) {
     var path = require('path');
     var logger = require('morgan');
-    // var bodyParser = require('body-parser'); 
-
+    
     app.use(logger('dev'));
-    // app.use(bodyParser('json'));
     app.use(express.json());
 
     app.use('/bootstrap', express.static(path.join(__dirname, '..', '..', 'node_modules', 'bootstrap')));
@@ -18,6 +16,7 @@ module.exports = function (app, express) {
 
     app.use('/api/films', require('./films'));
     app.use('/api/tvs', require('./tvs'));
+    app.use('/api/genre', require('./genre'));
 
    
 
